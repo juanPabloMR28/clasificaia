@@ -1,0 +1,11 @@
+# Infraestructura como código (Render Blueprint): declara el servicio en un archivo
+# versionado. Render lo lee en New -> Blueprint. Verifiquen los nombres de los
+# campos en la documentación de Render (Blueprint spec): pueden cambiar.
+services:
+  - type: web # servicio web que recibe peticiones HTTP
+    name: clasificaia-equipoN # cámbienlo: forma parte de la URL pública
+    runtime: docker # se construye con el Dockerfile del repositorio
+    plan: free
+    dockerfilePath: ./Dockerfile
+    healthCheckPath: /health # Render espera a que /health responda antes de usarlo
+    autoDeploy: true # cada push a la rama vuelve a desplegar

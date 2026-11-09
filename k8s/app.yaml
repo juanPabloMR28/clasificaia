@@ -1,0 +1,51 @@
+# ClasificaIA en Kubernetes (kind): Deployment + Service + escalado automático.
+# Uso: kind load docker-image clasificaia:1.0 --name proyecto
+# kubectl apply -f k8s/app.yaml
+apiVersion: apps/v1
+kind: Deployment # mantiene N copias (pods) de la API funcionando
+metadata:
+  name: clasificaia
+spec:
+  replicas: 2
+  selector:
+    matchLabels: {app: clasificaia}
+  template:
+    metadata:
+      labels: {app: clasificaia}
+    spec:
+      containers:
+        - name: api
+          image: clasificaia:1.0
+          imagePullPolicy: IfNotPresent # usar la imagen cargada con kind load
+          ports: [{containerPort: 8000}]
+          resources: # lo que pide y lo máximo que puede usar
+            requests: {cpu: 100m, memory: 128Mi}
+            limits: {cpu: 500m, memory: 256Mi}
+          readinessProbe: # no recibe tráfico hasta que /health responde
+            httpGet: {path: /health, port: 8000}
+          livenessProbe: # si deja de responder, se reinicia
+            httpGet: {path: /health, port: 8000}
+            initialDelaySeconds: 10
+
+---
+apiVersion: v1
+kind: Service # nombre y puerto estables para llegar a los pods
+metadata:
+  name: clasificaia
+spec:
+  selector: {app: clasificaia}
+  ports: [{port: 80, targetPort: 8000}]
+---
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler # agrega o quita pods según el uso de CPU
+metadata:
+  name: clasificaia
+spec:
+  scaleTargetRef: {apiVersion: apps/v1, kind: Deployment, name: clasificaia}
+  minReplicas: 2
+  maxReplicas: 6
+  metrics:
+    - type: Resource
+      resource:
+        name: cpu
+        target: {type: Utilization, averageUtilization: 60}

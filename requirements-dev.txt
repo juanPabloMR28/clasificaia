@@ -1,0 +1,3 @@
+-r requirements.txt # todo lo de producción, más:
+pytest>=8.0 # ejecutar las pruebas automáticas
+httpx>=0.27 # lo necesita internamente TestClient de FastAPI (solo pruebas)
