@@ -1,3 +1,3 @@
-# Proyecto: Detección de Vino (¿Es bueno o regular?)
+# Proyecto: Dígitos Escritos a Mano
 
 ## SVM
