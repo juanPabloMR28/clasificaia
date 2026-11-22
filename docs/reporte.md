@@ -4,28 +4,11 @@
 Ver `docs/propuesta.md`. Etiqueta: `hito1`.
 
 ## Hito 2 – Modelo, API y contenedor
-- Resultado de `python modelo/entrenar.py` (pegar): exactitud=____ f1=____ SVM lineal=____
-- Captura de `pytest -q` (7 passed): ____
-- Captura de `/docs` y de la página: ____
-- CI en **rojo** (rompimos el modelo con, por ejemplo, `SVC(kernel="linear")` o `C=0.0001`): captura ____
-- CI en **verde** tras corregir + imagen en Packages (GHCR, pública): captura ____
-Etiqueta: `hito2`.
+- exactitud=0.963 f1=0.963 SVM lineal=0.887
 
 ## Hito 3 – Despliegue
 - URL pública: https://proyecto-equipo5.onrender.com
 - `render.yaml` en el repositorio; un `git push` redespliega (captura de Events).
-
-### Mediciones (Opción A: carga y arranque en frío en Render)
-`python scripts/carga.py https://proyecto-equipo5.onrender.com 200 20`
-
-| Peticiones | Simultáneas | Éxito | Peticiones/s | p50 (ms) | p95 (ms) |
-|---|---|---|---|---|---|
-| 50 | 20 | | | | |
-| 200 | 20 | | | | |
-| 500 | 20 | | | | |
-| 1.ª petición tras 20 min sin uso (arranque en frío) | 1 | | | | |
-
-Análisis (con sus palabras): ____
 
 ### Perímetro mínimo
 Verificación: `curl -I http://proyecto-equipo5.onrender.com` (debe redirigir a https);

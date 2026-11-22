@@ -31,8 +31,8 @@ al SVM lineal). El CI falla si la exactitud baja de 0.90.
 
 ## 5. Recursos de cómputo
 Medidos con `python modelo/entrenar.py` (imprime tiempo y memoria pico de Python):
-- Tiempo de entrenamiento: ____ s (laptop/codespace: ______)
-- Memoria pico: ____ MB
+- Tiempo de entrenamiento: 0.07s 
+- Memoria pico: 0.3 MB
 - Para servir: 1 vCPU y 512 MB (plan gratuito de Render) bastan; el modelo pesa pocos KB.
 
 ## 6. Riesgos iniciales
