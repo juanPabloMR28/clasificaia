@@ -1,5 +1,6 @@
 .venv/
 __pycache__/
-*.joblib
-*.pkl
-*.h5
+*.pyc
+.pytest_cache/
+app/modelo.joblib
+.env
