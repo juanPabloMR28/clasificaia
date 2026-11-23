@@ -11,7 +11,7 @@ Ver `docs/propuesta.md`. Etiqueta: `hito1`.
 - `render.yaml` en el repositorio; un `git push` redespliega (captura de Events).
 
 ### Perímetro mínimo
-Verificación: `curl -I http://proyecto-equipo5.onrender.com` (debe redirigir a https);
+Verificación: `curl -I https://proyecto-equipo5.onrender.com` (debe redirigir a https);
 la API no responde en otros puertos; `/docs` sigue visible (se oculta en el Hito 4).
 
 | Puerto | Origen | Motivo |
